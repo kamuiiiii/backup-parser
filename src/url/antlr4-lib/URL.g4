@@ -1,0 +1,12 @@
+grammar URL;
+url: scheme '://' host (':' port)? ('/' path?)? query? frag? EOF;
+scheme: 'http' | 'https';
+host: STRING ('.' STRING)*;
+port: DIGITS;
+path: STRING ('/' STRING)* '/'?;
+query: '?' search;
+frag: '#' (STRING | DIGITS);
+search: parameter ('&' parameter)*;
+parameter: STRING '=' (STRING | DIGITS);
+STRING: [a-zA-Z]+ [0-9]*;
+DIGITS: [0-9]+;
